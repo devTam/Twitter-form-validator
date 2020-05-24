@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   height: 100vh;
   width: 100%;
   background-color: #39424C;
@@ -79,10 +79,9 @@ body {
 
 .form__header h1 {
   margin: 15px 0;
-  letter-spacing: .5px;
-  font-size: 23px;
+  letter-spacing: -.5px;
+  font-size: 22px;
   line-height: 30px;
-  font-weight: bold;
 }
 
 .form__input {
@@ -99,7 +98,8 @@ body {
   padding: 4px 10px;
   display: block;
   color: #7A998D;
-  line-height: 20px;
+  font-size: 15px;
+  line-height: 25px;
   position: absolute;
   top: 0;
 }
@@ -165,7 +165,7 @@ body {
   display: block;
   color: #1B95E0;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 20px;
 }
 /*# sourceMappingURL=style.css.map */
