@@ -21,7 +21,7 @@ body {
 .form {
   max-width: 600px;
   height: 596.69px;
-  margin: 30px auto;
+  margin: 32px auto;
   border-radius: 13px;
   background-color: #15202B;
   display: -webkit-box;
@@ -50,8 +50,8 @@ body {
   display: inline-block;
   position: absolute;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  -webkit-transform: translateX(-80%);
+          transform: translateX(-80%);
   fill: #fff;
 }
 
@@ -66,7 +66,7 @@ body {
   font-weight: bold;
   border: none;
   border-radius: 15px;
-  background-color: #19608E;
+  background-color: #1A91DA;
   cursor: pointer;
   opacity: 0.5;
   pointer-events: none;
@@ -96,7 +96,7 @@ body {
 
 .form__input label {
   height: 35%;
-  padding: 4px 8px;
+  padding: 4px 10px;
   display: block;
   color: #7A998D;
   line-height: 20px;

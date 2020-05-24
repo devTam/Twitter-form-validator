@@ -20,7 +20,7 @@ body {
 .form {
     max-width: 600px;
     height: 596.69px;
-    margin: 30px auto;
+    margin: 32px auto;
     border-radius: 13px;
     background-color: #15202B;
     display: flex;
@@ -41,7 +41,7 @@ body {
             display: inline-block;
             position: absolute;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-80%);
             fill: #fff;
         }
 
@@ -56,7 +56,7 @@ body {
             font-weight: bold;
             border: none;
             border-radius: 15px;
-            background-color: #19608E;
+            background-color: #1A91DA;
             cursor: pointer;
             opacity: 0.5; // animate to 1 when form active
             pointer-events: none; // change to all when form active
@@ -84,12 +84,12 @@ body {
         font-size: 15px;
         margin:  0 30px 5px;
         position: relative;
-        // transition: border 1s forwards;
+        
 
 
         label {
             height: 35%;
-            padding: 4px 8px;
+            padding: 4px 10px;
             display: block;
             color: #7A998D;
             line-height: 20px;
