@@ -12,6 +12,14 @@ body {
   background-color: #39424C;
 }
 
+#error {
+  color: #E0245E;
+}
+
+#error-bottom {
+  border-bottom: 2px solid #E0245E;
+}
+
 .form-container {
   height: 100vh;
   width: 100%;
@@ -136,8 +144,9 @@ body {
 }
 
 .form__error1--text {
-  display: none;
+  display: block;
   line-height: 20px;
+  color: #E0245E;
 }
 
 .form__error1--counter {
@@ -153,7 +162,8 @@ body {
 }
 
 .form__error2--text {
-  display: none;
+  display: block;
+  color: #E0245E;
 }
 
 .form__link {

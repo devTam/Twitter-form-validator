@@ -11,6 +11,20 @@ body {
     background-color: #39424C;
 }
 
+
+
+$error-color: #E0245E;
+
+#error {
+    // border-bottom: 2px solid $error-color;
+    color: $error-color;
+}
+
+#error-bottom {
+    border-bottom: 2px solid $error-color;
+}
+
+
 .form-container {
     height: 100vh;
     width: 100%;
@@ -113,6 +127,7 @@ body {
             bottom: 0;
             border-bottom: 2px solid #7A998D;
 
+
             &:focus {
                 border-bottom: 2px solid #1D96C1;
             }
@@ -127,8 +142,10 @@ body {
         margin:  0 30px 20px;
 
         &--text {
-            display: none;
+            display: block;
             line-height: 20px;
+            color: $error-color;
+
         }
 
         &--counter {
@@ -144,7 +161,8 @@ body {
         margin:  0 30px 20px;
 
         &--text {
-            display: none;
+            display: block;
+            color: $error-color;
         }
     }
 
