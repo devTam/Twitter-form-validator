@@ -1,133 +1,153 @@
-const form = document.querySelector('.form');
-const formInput = document.querySelector('.form__input');
-const nameField = document.querySelector('.name');
-const nameErrorDiv = document.querySelector('.form__error1');
-const phoneErrorDiv = document.querySelector('.form__error2');
-const toggleBtn = document.querySelector('.toggle-btn');
-const nameLabel = form.querySelector('.name-label');
-const phoneLabel = form.querySelector('.phone-label');
-const errorText2 = phoneErrorDiv.querySelector('.form__error2--text');
-const phoneInput = document.querySelector('.phone');
-const nextBtn = document.querySelector('.form__nav-btn');
 
 
-
-
-
-
-
-// To toggle between email and phone number
-toggleBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    if(toggleBtn.innerText === 'Use email instead' ) {
-        toggleBtn.innerText = 'Use phone instead';
-        phoneLabel.innerText = 'Email';
-        // set the error text div to empty so when switching previous error is cleared
+(function init () {
+    /**
+     * =================== SELECTIONS ==========================
+     */
+    const form = document.querySelector('.form');
+    const nameField = document.querySelector('.name');
+    const nameErrorDiv = document.querySelector('.form__error1');
+    const toggleBtn = document.querySelector('.toggle-btn');
+    const nameLabel = form.querySelector('.name-label');
+    const phoneLabel = form.querySelector('.phone-label');
+    const errorText2 = document.querySelector('.form__error2--text');
+    const nameInput = document.querySelector('.name');
+    const phoneInput = document.querySelector('.phone');
+    const nextBtn = document.querySelector('.form__nav-btn');
+    
+    nameInput.focus();
+    /**
+     * =====================EVENT LISTENERS =====================
+     */
+    
+    // TOGGLE BETWEEN PHONE AND EMAIL SIGNUP
+    toggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (toggleBtn.innerText === 'Use email instead') {
+            toggleBtn.innerText = 'Use phone instead';
+            phoneLabel.innerText = 'Email';
+            
+        } else {
+            toggleBtn.innerText = 'Use email instead';
+            phoneLabel.innerText = 'Phone';
+        }
+        // Reset error message
         errorText2.innerText = '';
         // Reset input field 
         phoneInput.value = '';
-    }else {
-        toggleBtn.innerText = 'Use email instead';
-        phoneLabel.innerText = 'Phone';
-        // set the error text div to empty so when switching previous error is cleared
-        errorText2.innerText = '';
-        // Reset input field 
-        phoneInput.value = '';
+        // when button is toggled disable next button if enabled
+        nextBtn.style.cssText = 'opacity: .5; pointer-events: none';
+    });
+    
+    
+    form.addEventListener('input', (e) => {
+        if(e.target.matches('.name')) {
+            increaseCounter(); 
+            validateName();
+            validateNameLength();
+        }
+        if(e.target.matches('.phone')) {
+            validatePhone();
+            validateEmail();
+            showNextBtn();
+        }
+        
+    });
+    
+    
+    
+    /**
+     * ========================== FUNCTIONS ====================
+     */
+    
+    // FUNCTION TO VALIDATE NAME LENGTH
+    const validateNameLength = () => {
+        nameInput.addEventListener('keydown', (e) => {
+            if (nameInput.value.length >= 50 && e.code !== 'Backspace') event.preventDefault();
+        });
     }
-});
-
-// nextBtn.style.cssText = 'opacity: 1; pointer-events: all';
-
-
-form.addEventListener('input', (e) => {
-
-    // Validating the name input 
-    const nameInput = e.target.closest('.name');
-    if (e.target === nameInput) {
+    
+    
+    // FUNCTION TO INCREASE COUNTER
+    const increaseCounter = () => {
         const counter = nameErrorDiv.querySelector('span');
         counter.innerText = nameInput.value.length;
-
-        // To validate length of name not more than 50
-        nameInput.addEventListener('keydown', (e) => {
-            if(nameInput.value.length >= 50 && e.code !== 'Backspace') event.preventDefault();
-        });
-
-        // To validate empty name field
-        let nameErrorText = form.querySelector('.form__error1--text');
-        if(nameInput.value === '') {
+    }
+    
+    
+    // FUNCTION TO VALIDATE EMPTY NAME
+    const nameErrorText = form.querySelector('.form__error1--text');
+    const validateName = () => {
+        
+        if (nameInput.value === '') {
             nameErrorText.innerText = 'What\'s your name?';
             nameField.setAttribute('id', 'error-bottom');
             nameLabel.setAttribute('id', 'error');
-        } else  {
+            return false;
+        } else {
             nameErrorText.innerText = '';
             nameField.removeAttribute('id', 'error-bottom');
             nameLabel.removeAttribute('id', 'error');
+            return true;
         }
-        
     }
-
     
     
-
-
-    
-    // Validating the Phone input
-    const phoneInput = e.target.closest('.phone');
+    // FUNCTION TO VALIDATE PHONE INPUT
     const validatePhone = () => {
-
+        
+        // Regular expression to validate Nigerian phone numbers
         const phoneRegex = /(^[0]\d{10}$)|(^[\+]?[234]\d{12}$)/;
-        if (e.target === phoneInput && phoneLabel.innerText === 'Phone') {
-            // Regular expression to validate Nigerian phone numbers
-            if (!phoneRegex.test(e.target.value)) {
-                //Apply to phoneErrorDiv
+        
+        if (phoneLabel.innerText === 'Phone') {
+            if (!phoneRegex.test(phoneInput.value)) {
+                
                 errorText2.innerText = 'Please enter a valid phone number.'
                 return false;
-            }else {
+            } else {
                 errorText2.innerText = '';
                 return true;
             }
-        } 
+        }
         
     }
-    validatePhone();
-
     
     
-
-    // Validating email input
-
+    // FUNCTION TO VALIDATE EMAIL INPUT
     const validateEmail = () => {
-
-        if (e.target === phoneInput && phoneLabel.innerText === 'Email') {
+        
+        if (phoneLabel.innerText === 'Email') {
             // Regular expression to validate Email
             const emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-            if (!emailRegex.test(e.target.value)) {
+            if (!emailRegex.test(phoneInput.value)) {
                 
                 errorText2.innerText = 'Please enter a valid Email.'
                 return false;
-
-            }else {
+                
+            } else {
                 errorText2.innerText = '';
                 return true
-            }  
+            }
         }
     }
-
-    validateEmail();
-
-    // console.log(validateEmail());
-
-
-    // Showing the next button if all validation is true
-
-    // if (!nameInput.value === '')
-  
-
-    if (validatePhone() === true || validateEmail() === true) {
-        console.log('Phone and Email passed!');
-        
+    
+    // FUNCTION TO SHOW NEXT BUTTON
+    const showNextBtn = () => {
+        if(validateName() && validatePhone() || validateName() && validateEmail()) {
+            nextBtn.style.cssText = 'opacity: 1; pointer-events: all';
+        }
+        else {
+            nextBtn.style.cssText = 'opacity: .5; pointer-events: none';
+        }
     }
     
-});
+    
+    
+    
+    
+    
+    
+    
 
+})();    
 
